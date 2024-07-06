@@ -1,20 +1,33 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import React, { useState, useEffect } from "react";
+import { StyleSheet, View, useWindowDimensions } from "react-native";
+import { Exercicio } from "./src/pages/initial";
+import { colors } from "./src/atomes/colors";
 
 export default function App() {
+  const { width, height } = useWindowDimensions();
+  const [isLandscape, setIsLandscape] = useState(width < height);
+
+  useEffect(() => {
+    setIsLandscape(width < height);
+    
+  }, [width, height]);
   return (
-    <View style={styles.container}>
-      <Text>Open up App.tsx to start working on your app!</Text>
-      <StatusBar style="auto" />
+    <View style={[styles.container, isLandscape? styles.vertical:styles.horizontal]}>
+      <Exercicio />
     </View>
   );
+  
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
+    marginTop: 20,
+  },
+  vertical: {
+    backgroundColor: colors.body,
+  },
+  horizontal: {
+    backgroundColor: "red",
   },
 });
