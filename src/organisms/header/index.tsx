@@ -1,9 +1,11 @@
 import { View,StyleSheet} from "react-native";
 import { colors } from "../../atomes/colors";
 import {HeaderListButtons} from "../../molecules/header_list_buttons"
+import useOrientation from '../../../hooks/useOrientation';
+import { orientation } from "../../atomes/orientation";
 export function Header(){
     return(
-        <View style={styles.container}>
+        <View style={[styles.container, useOrientation() === orientation.LANDSCAPE ? styles.sizeofLANDSCAPE : styles.sizeofPORTRAIL ]}>
             <HeaderListButtons items={['Menu', 'Logs', 'Credits']} />
         </View>
     )
@@ -14,10 +16,14 @@ const styles = StyleSheet.create({
         flex:0,
         flexDirection:'row',
         backgroundColor: colors.header,
-        height:60,
         justifyContent:'space-around',
         alignItems:'center',
         color:'blue',
     },
-
+    sizeofLANDSCAPE:{
+        height:40,
+    },
+    sizeofPORTRAIL:{
+        height:60,
+    },
 })

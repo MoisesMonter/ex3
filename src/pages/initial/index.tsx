@@ -4,7 +4,10 @@ import {Header} from '../../organisms/header';
 import { Body } from "../../organisms/body";
 import { Footer } from '../../organisms/footer';
 import { colors } from '../../atomes/colors';
+import useOrientation from '../../../hooks/useOrientation';
+
 export function Exercicio(){
+
     return (
           <View style={styles.container}>
             <Header/>

@@ -1,10 +1,11 @@
 import {View,StyleSheet,Text} from "react-native"
 import {colors} from "../../atomes/colors"
-
+import useOrientation from "../../../hooks/useOrientation"
+import { orientation } from "../../atomes/orientation"
 export function Footer(){
     return(
-        <View style={styles.container}>
-        <Text style={styles.text}>Exercício 03 - DDM</Text>
+        <View style={[styles.container,  useOrientation() === orientation.LANDSCAPE ?styles.sizeofLANDSCAPE:styles.sizeofPORTRAIL]}>
+        <Text style={[styles.text,useOrientation() === orientation.LANDSCAPE ? styles.textLANDSCAPE :styles.textPORTRAIL]}>Exercício 03 - DDM</Text>
         </View>
     )
 }
@@ -14,16 +15,12 @@ const styles = StyleSheet.create({
         flex:0,
         justifyContent:"center",
         backgroundColor: colors.footer,
-        // width:"100%",
-        height:"7%",
-        // maxHeight:"100%",
-        alignItems:"center",
     },
     text:{
-        // paddingTop:20,
-        // paddingBottom:15,
-        fontSize:17,
         color:"white",
+        textAlign:"center",
     },
+    sizeofLANDSCAPE:{height:"10%"},sizeofPORTRAIL:{height:"7%"},
+    textLANDSCAPE:{fontSize:22},textPORTRAIL:{fontSize:17},
 }
 )

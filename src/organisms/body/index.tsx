@@ -3,7 +3,8 @@ import {colors} from "../../atomes/colors"
 import { BodyRows } from "../../molecules/body_rows";
 import { BodyCols } from "../../molecules/body_cols";
 import { BodyGrids } from "../../molecules/body_grids";
-
+import useOrientation from "../../../hooks/useOrientation";
+import { orientation } from "../../atomes/orientation";
 
 export function Body(){
 
@@ -15,8 +16,8 @@ export function Body(){
 
 
     return(
-        <ScrollView style={styles.container}>
-            <View style={styles.subcontainer}>
+        <ScrollView style={[styles.container, useOrientation() === orientation.LANDSCAPE? styles.containerLANDSCAPE : styles.containerPORTRAIL]}>
+            <View style={[styles.subcontainer, useOrientation() === orientation.LANDSCAPE? styles.subcontainerLANDSCAPE : styles.subcontainerPORTRAIL]}>
                 <BodyRows/>
 
                 <BodyCols/>
@@ -30,7 +31,7 @@ export function Body(){
 const styles = StyleSheet.create({
     container:{
         flex:1,
-        margin:25,
+
 
     },
     subcontainer:{
@@ -39,6 +40,25 @@ const styles = StyleSheet.create({
         justifyContent:"space-around",
         backgroundColor: colors.b_sub,
         borderRadius:15,
+
+    },
+    containerLANDSCAPE:{
+        marginTop:30,
+        marginLeft:70,
+        marginRight:70,
+        marginBottom:30,
+    },
+    containerPORTRAIL:{
+        margin:25,
+    },
+    subcontainerLANDSCAPE:{
+        padding:5,
+        paddingTop:50,
+        paddingBottom:50,
+        gap:100,
+    },
+    subcontainerPORTRAIL:{
+
         paddingTop:52,
         paddingLeft:30,
         paddingRight:30,
